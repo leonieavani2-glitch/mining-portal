@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title or "NovaMine Portal" }}</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><header class="nav"><a class="brand" href="{{ url_for('index') }}">NOVA<span>MINE</span></a>
+<nav><a href="{{ url_for('packages') }}">Programs</a>{% if current_user %}<a href="{{ url_for('dashboard') }}">Dashboard</a>{% if current_user.is_admin %}<a href="{{ url_for('admin') }}">Admin</a>{% endif %}<a href="{{ url_for('logout') }}">Log out</a>{% else %}<a href="{{ url_for('login') }}">Log in</a><a class="navbtn" href="{{ url_for('register') }}">Create account</a>{% endif %}</nav></header>
+<main>{% with messages = get_flashed_messages() %}{% if messages %}<div class="flash">{% for message in messages %}<p>{{ message }}</p>{% endfor %}</div>{% endif %}{% endwith %}{% block content %}{% endblock %}</main>
+<footer><p>NovaMine Portal · Local prototype · Simulated balances only</p><p>This site does not accept deposits or provide real mining/investment services.</p></footer></body></html>
